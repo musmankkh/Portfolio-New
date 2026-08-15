@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: auto; /* Lenis owns smooth scrolling */
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  max-width: var(--measure);
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ---- View Transitions ----
+   Root (unnamed) content gets a default blur/fade cross-dissolve on every
+   route change. Explicitly named groups (project cover images, matched via
+   `*`, which the spec resolves after exact-name selectors) get a slower
+   morph so a thumbnail can glide into a case-study hero image. */
+::view-transition-old(root) {
+  animation: var(--dur-short) var(--ease-in) both vt-fade reverse;
+}
+::view-transition-new(root) {
+  animation: var(--dur-long) var(--ease-out) calc(var(--dur-short) * 0.6) both vt-fade;
+}
+
+::view-transition-group(*) {
+  animation-duration: var(--dur-long);
+  animation-timing-function: var(--ease-in-out);
+}
+::view-transition-image-pair(*) {
+  animation-name: vt-morph-blur;
+}
+@keyframes vt-morph-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+@keyframes vt-fade {
+  from {
+    filter: blur(2px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 1ms !important;
+    animation-delay: 0s !important;
+  }
+}
