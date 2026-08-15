@@ -4,6 +4,7 @@ import { useLenis } from "../../hooks/useLenis";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { ScrollProgress } from "./ScrollProgress";
+import { AmbientBackground } from "./AmbientBackground";
 
 export function Layout() {
   useLenis();
@@ -16,6 +17,7 @@ export function Layout() {
 
   return (
     <div className="flex min-h-dvh flex-col">
+      <AmbientBackground />
       <ScrollProgress />
       <Header />
       <main className="flex-1">
