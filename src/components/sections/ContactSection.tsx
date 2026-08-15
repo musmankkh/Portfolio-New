@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { contactLinks, profile } from "../../data/content";
+import { contactLinks, contactSection } from "../../data/portfolio";
 import type { ContactIcon } from "../../data/types";
-import { InstagramIcon, LinkedInIcon, WhatsAppIcon } from "../ui/icons";
+import { GithubIcon, InstagramIcon, LinkedInIcon, WhatsAppIcon } from "../ui/icons";
 import { Eyebrow } from "../ui/Eyebrow";
 import { Reveal } from "../motion/Reveal";
 import { Magnetic } from "../motion/Magnetic";
@@ -10,6 +10,7 @@ const iconComponents: Record<ContactIcon, typeof LinkedInIcon> = {
   linkedin: LinkedInIcon,
   instagram: InstagramIcon,
   whatsapp: WhatsAppIcon,
+  github: GithubIcon,
 };
 
 const contactEmail = import.meta.env.VITE_CONTACT_EMAIL ?? "";
@@ -33,13 +34,9 @@ export function ContactSection() {
       <div className="mx-auto grid max-w-(--content-max) gap-14 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <Reveal>
           <Eyebrow>Get In Touch</Eyebrow>
-          <h2 className="font-display text-3xl sm:text-4xl">
-            {profile.name ? `Let's talk, ${profile.name.split(" ")[0]}.` : "Let's talk."}
-          </h2>
-          <p className="text-muted mt-4 max-w-(--measure) text-sm">
-            Have a project, a role, or just a question about data pipelines?
-            Send a message, or reach out directly below.
-          </p>
+          <h2 className="font-display text-3xl sm:text-4xl">{contactSection.heading}</h2>
+          <p className="text-muted mt-4 max-w-(--measure) text-sm">{contactSection.text}</p>
+          <p className="text-muted mt-3 max-w-(--measure) text-sm">{contactSection.interests}</p>
 
           {contactLinks.length > 0 && (
             <ul className="mt-10 flex flex-wrap items-center gap-4">
@@ -116,7 +113,7 @@ export function ContactSection() {
                 type="submit"
                 className="border-accent text-accent hover:bg-accent hover:text-paper mt-2 self-start rounded-full border px-6 py-3 text-sm font-medium transition-colors duration-(--dur-short)"
               >
-                Send message
+                {contactSection.primaryCta}
               </button>
             ) : (
               <p className="text-muted font-outlier mt-2 text-xs">

@@ -1,4 +1,4 @@
-import { focusAreas } from "../../data/content";
+import { focusAreas, whatIDo } from "../../data/portfolio";
 import { Eyebrow } from "../ui/Eyebrow";
 import { Reveal } from "../motion/Reveal";
 import { Spotlight } from "../motion/Spotlight";
@@ -7,10 +7,14 @@ export function FocusAreas() {
   if (focusAreas.length === 0) return null;
 
   return (
-    <section className="border-rule/60 border-t px-6 py-24 sm:px-10 sm:py-32">
+    <section
+      id="what-i-do"
+      className="border-rule/60 border-t px-6 py-24 sm:px-10 sm:py-32"
+    >
       <div className="mx-auto max-w-(--content-max)">
-        <Eyebrow>What I Work On</Eyebrow>
-        <h2 className="font-display text-3xl">Where I focus.</h2>
+        <Eyebrow>What I Do</Eyebrow>
+        <h2 className="font-display max-w-4xl text-3xl text-balance">{whatIDo.heading}</h2>
+        <p className="text-muted mt-4 max-w-(--measure) text-sm">{whatIDo.supporting}</p>
 
         <div className="mt-14 grid gap-px sm:grid-cols-2">
           {focusAreas.map((area, index) => (
@@ -23,21 +27,10 @@ export function FocusAreas() {
                   <h3 className="font-display group-hover:text-accent mt-4 text-xl transition-colors duration-(--dur-short)">
                     {area.title}
                   </h3>
-                  <p className="text-muted mt-3 max-w-(--measure) text-sm">
+                  <p className="text-ink mt-3 max-w-(--measure) text-sm font-medium">
                     {area.description}
                   </p>
-                  {area.tags.length > 0 && (
-                    <ul className="mt-5 flex flex-wrap gap-2">
-                      {area.tags.map((tag) => (
-                        <li
-                          key={tag}
-                          className="border-rule text-muted font-outlier rounded-full border px-3 py-1 text-xs"
-                        >
-                          {tag}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <p className="text-muted mt-2 max-w-(--measure) text-sm">{area.body}</p>
                 </div>
               </Spotlight>
             </Reveal>

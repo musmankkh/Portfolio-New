@@ -1,4 +1,4 @@
-import { experience } from "../../data/content";
+import { experience, experienceSection } from "../../data/portfolio";
 import { Eyebrow } from "../ui/Eyebrow";
 import { EmptyState } from "../ui/EmptyState";
 import { Reveal } from "../motion/Reveal";
@@ -11,12 +11,13 @@ export function Experience() {
     >
       <div className="mx-auto max-w-(--content-max)">
         <Eyebrow>Experience</Eyebrow>
-        <h2 className="font-display text-3xl">Where I've worked.</h2>
+        <h2 className="font-display text-3xl">{experienceSection.heading}</h2>
+        <p className="text-muted mt-4 max-w-(--measure) text-sm">{experienceSection.supporting}</p>
 
         <div className="mt-14">
           {experience.length === 0 ? (
             <EmptyState>
-              Add roles to the `experience` array in src/data/content.ts —
+              Add roles to the `experience` array in src/data/portfolio.ts —
               organization, role, dates, and highlights.
             </EmptyState>
           ) : (

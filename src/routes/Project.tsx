@@ -1,9 +1,18 @@
 import type { CSSProperties } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { projects } from "../data/content";
+import { projects } from "../data/portfolio";
 import { Eyebrow } from "../components/ui/Eyebrow";
 import { Reveal } from "../components/motion/Reveal";
 import { TransitionLink } from "../components/motion/TransitionLink";
+
+const CASE_STUDY_FIELDS = [
+  ["problem", "Problem"],
+  ["dataSources", "Data"],
+  ["architecture", "Architecture"],
+  ["engineering", "Engineering"],
+  ["automation", "Automation"],
+  ["outcome", "Outcome"],
+] as const;
 
 export function Project() {
   const { slug } = useParams();
@@ -59,25 +68,17 @@ export function Project() {
           </div>
         )}
 
-        <div className="mt-16 grid gap-14 sm:grid-cols-3">
-          {project.problem && (
-            <Reveal index={0}>
-              <Eyebrow>Problem</Eyebrow>
-              <p className="text-ink text-sm">{project.problem}</p>
-            </Reveal>
-          )}
-          {project.approach && (
-            <Reveal index={1}>
-              <Eyebrow>Approach</Eyebrow>
-              <p className="text-ink text-sm">{project.approach}</p>
-            </Reveal>
-          )}
-          {project.outcome && (
-            <Reveal index={2}>
-              <Eyebrow>Outcome</Eyebrow>
-              <p className="text-ink text-sm">{project.outcome}</p>
-            </Reveal>
-          )}
+        <div className="mt-16 grid gap-10 sm:grid-cols-3">
+          {CASE_STUDY_FIELDS.map(([key, label]) => {
+            const value = project[key];
+            if (!value) return null;
+            return (
+              <Reveal key={key} index={CASE_STUDY_FIELDS.findIndex(([k]) => k === key)}>
+                <Eyebrow>{label}</Eyebrow>
+                <p className="text-ink text-sm">{value}</p>
+              </Reveal>
+            );
+          })}
         </div>
 
         {project.metrics && project.metrics.length > 0 && (

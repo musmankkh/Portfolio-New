@@ -2,9 +2,7 @@ import { motion } from "motion/react";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { cn } from "../../lib/cn";
 
-const STAGES = ["Ingest", "Transform", "Store", "Insight"];
-const NODE_X = [60, 260, 460, 660];
-const NODE_Y = 60;
+const DEFAULT_STAGES = ["Ingest", "Transform", "Store", "Insight"];
 
 /**
  * Original signature visual: a small data-pipeline diagram with flowing
@@ -14,19 +12,29 @@ const NODE_Y = 60;
  * orchestrated motion signature for the whole site, kept slow and subtle,
  * and fully disabled under prefers-reduced-motion.
  */
-export function PipelineDiagram({ className }: { className?: string }) {
+export function PipelineDiagram({
+  className,
+  stages = DEFAULT_STAGES,
+}: {
+  className?: string;
+  stages?: string[];
+}) {
   const reduced = useReducedMotion();
+  const width = Math.max(stages.length * 160, 480);
+  const step = width / stages.length;
+  const nodeX = stages.map((_, i) => step * i + step / 2);
+  const nodeY = 60;
 
   return (
     <svg
-      viewBox="0 0 720 120"
+      viewBox={`0 0 ${width} 120`}
       className={cn("w-full", className)}
       aria-hidden="true"
       role="presentation"
     >
-      {NODE_X.slice(0, -1).map((x, i) => {
-        const nextX = NODE_X[i + 1];
-        const d = `M ${x + 14} ${NODE_Y} L ${nextX - 14} ${NODE_Y}`;
+      {nodeX.slice(0, -1).map((x, i) => {
+        const nextX = nodeX[i + 1];
+        const d = `M ${x + 14} ${nodeY} L ${nextX - 14} ${nodeY}`;
         return (
           <g key={x}>
             <path d={d} stroke="var(--color-rule)" strokeWidth="1" fill="none" />
@@ -43,7 +51,7 @@ export function PipelineDiagram({ className }: { className?: string }) {
                   duration: 2.6,
                   ease: "linear",
                   repeat: Infinity,
-                  delay: i * 0.35,
+                  delay: i * 0.3,
                 }}
               />
             )}
@@ -51,27 +59,27 @@ export function PipelineDiagram({ className }: { className?: string }) {
         );
       })}
 
-      {NODE_X.map((x, i) => (
+      {nodeX.map((x, i) => (
         <g key={x}>
           <circle
             cx={x}
-            cy={NODE_Y}
+            cy={nodeY}
             r="14"
             fill="var(--color-paper)"
             stroke="var(--color-rule)"
             strokeWidth="1.5"
           />
-          <circle cx={x} cy={NODE_Y} r="3.5" fill="var(--color-accent)" />
+          <circle cx={x} cy={nodeY} r="3.5" fill="var(--color-accent)" />
           <text
             x={x}
-            y={NODE_Y + 34}
+            y={nodeY + 34}
             textAnchor="middle"
             fontFamily="var(--font-outlier)"
             fontSize="11"
             letterSpacing="0.06em"
             fill="var(--color-muted)"
           >
-            {STAGES[i].toUpperCase()}
+            {stages[i].toUpperCase()}
           </text>
         </g>
       ))}

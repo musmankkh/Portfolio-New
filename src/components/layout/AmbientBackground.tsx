@@ -1,96 +1,74 @@
-import { useEffect, useRef } from "react";
+import { useMemo } from "react";
+import { Particles, ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import type { Engine, ISourceOptions } from "@tsparticles/engine";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
+import { resolveCssColor } from "../../lib/resolveCssColor";
 
-interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  r: number;
-  accent: boolean;
+// Must be a stable reference across renders — ParticlesProvider throws if it changes.
+async function initEngine(engine: Engine) {
+  await loadSlim(engine);
 }
 
 /**
- * Full-viewport ambient motion: a handful of slow-drifting points, extending
- * the site's data-flow motif into the background rather than a generic
- * particles.js network. No connecting lines (that's the recognizable
- * off-the-shelf look this deliberately avoids). Canvas-based, capped particle
- * count, single rAF loop — cheap regardless of page length. Disabled entirely
- * under prefers-reduced-motion.
+ * Site-wide ambient layer: sparse, slow-drifting data points with faint
+ * short-range links — a lighter, page-wide companion to the hero's 3D
+ * network. Low density on purpose ("avoid making the screen look like a
+ * galaxy"). Skipped entirely under reduced-motion.
  */
 export function AmbientBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduced = useReducedMotion();
 
-  useEffect(() => {
-    if (reduced) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
+  const options: ISourceOptions = useMemo(() => {
+    const accent = resolveCssColor("--color-accent");
+    const neutral = resolveCssColor("--color-muted");
+    const link = resolveCssColor("--color-rule");
+    const narrow = window.innerWidth < 768;
 
-    const styles = getComputedStyle(document.documentElement);
-    const accentColor = styles.getPropertyValue("--color-accent").trim() || "#7dd3a0";
-    const neutralColor = styles.getPropertyValue("--color-muted").trim() || "#9a9a9a";
-
-    let particles: Particle[] = [];
-    let width = 0;
-    let height = 0;
-    let frame = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    function resize() {
-      width = canvas!.width = window.innerWidth * dpr;
-      height = canvas!.height = window.innerHeight * dpr;
-      canvas!.style.width = `${window.innerWidth}px`;
-      canvas!.style.height = `${window.innerHeight}px`;
-
-      const count = Math.min(60, Math.round((window.innerWidth * window.innerHeight) / 26000));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.1 * dpr,
-        vy: (Math.random() - 0.5) * 0.1 * dpr,
-        r: (Math.random() * 1.1 + 0.5) * dpr,
-        accent: Math.random() > 0.8,
-      }));
-    }
-
-    function draw() {
-      ctx!.clearRect(0, 0, width, height);
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < -5) p.x = width + 5;
-        if (p.x > width + 5) p.x = -5;
-        if (p.y < -5) p.y = height + 5;
-        if (p.y > height + 5) p.y = -5;
-
-        ctx!.beginPath();
-        ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx!.fillStyle = p.accent ? accentColor : neutralColor;
-        ctx!.globalAlpha = p.accent ? 0.4 : 0.16;
-        ctx!.fill();
-      }
-      frame = requestAnimationFrame(draw);
-    }
-
-    resize();
-    draw();
-    window.addEventListener("resize", resize);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("resize", resize);
+    return {
+      fullScreen: { enable: false },
+      background: { color: { value: "transparent" } },
+      fpsLimit: 60,
+      particles: {
+        number: { value: narrow ? 16 : 34 },
+        color: { value: [accent, neutral] },
+        shape: { type: "circle" },
+        opacity: { value: { min: 0.08, max: 0.32 } },
+        size: { value: { min: 1, max: 2 } },
+        move: {
+          enable: true,
+          speed: 0.25,
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: { default: "out" },
+        },
+        links: {
+          enable: true,
+          distance: 130,
+          color: link,
+          opacity: 0.12,
+          width: 1,
+        },
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: !narrow, mode: "grab" },
+          resize: { enable: true },
+        },
+        modes: {
+          grab: { distance: 140, links: { opacity: 0.25 } },
+        },
+      },
+      detectRetina: true,
     };
-  }, [reduced]);
+  }, []);
 
   if (reduced) return null;
 
   return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 opacity-70"
-    />
+    <ParticlesProvider init={initEngine}>
+      <Particles id="ambient-particles" className="fixed inset-0 z-0" options={options} />
+    </ParticlesProvider>
   );
 }

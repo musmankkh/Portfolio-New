@@ -1,4 +1,4 @@
-import { projects } from "../../data/content";
+import { projects, workSection } from "../../data/portfolio";
 import { Eyebrow } from "../ui/Eyebrow";
 import { Reveal } from "../motion/Reveal";
 import { PipelineDiagram } from "../ui/PipelineDiagram";
@@ -26,7 +26,8 @@ export function Work() {
     <section id="work" className="px-6 py-24 sm:px-10 sm:py-32">
       <div className="mx-auto max-w-(--content-max)">
         <Eyebrow>Selected Work</Eyebrow>
-        <h2 className="font-display text-3xl">Things I've built.</h2>
+        <h2 className="font-display text-3xl">{workSection.heading}</h2>
+        <p className="text-muted mt-4 max-w-(--measure) text-sm">{workSection.supporting}</p>
 
         <div className="mt-14">
           {projects.length === 0 ? (

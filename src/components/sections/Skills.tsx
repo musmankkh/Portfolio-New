@@ -1,4 +1,4 @@
-import { skills } from "../../data/content";
+import { skills } from "../../data/portfolio";
 import { Eyebrow } from "../ui/Eyebrow";
 import { EmptyState } from "../ui/EmptyState";
 import { Reveal } from "../motion/Reveal";
@@ -69,7 +69,7 @@ export function Skills() {
         <div className="mt-14">
           {skills.length === 0 ? (
             <EmptyState>
-              Add skill groups to the `skills` array in src/data/content.ts.
+              Add skill groups to the `skills` array in src/data/portfolio.ts.
             </EmptyState>
           ) : (
             <div className="flex flex-col">

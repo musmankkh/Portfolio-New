@@ -2,13 +2,14 @@ export interface Profile {
   name: string;
   role: string;
   tagline: string;
-  summary: string;
+  subheadline: string;
+  microLine?: string;
   location?: string;
   resumeUrl?: string;
   avatarUrl?: string;
 }
 
-export type ContactIcon = "linkedin" | "instagram" | "whatsapp";
+export type ContactIcon = "linkedin" | "instagram" | "whatsapp" | "github";
 
 export interface ContactLink {
   label: string;
@@ -36,7 +37,10 @@ export interface Project {
   coverImage?: string;
   gallery?: string[];
   problem?: string;
-  approach?: string;
+  dataSources?: string;
+  architecture?: string;
+  engineering?: string;
+  automation?: string;
   outcome?: string;
   metrics?: ProjectMetric[];
   links?: ProjectLink[];
@@ -63,7 +67,14 @@ export interface SkillGroup {
 export interface FocusArea {
   title: string;
   description: string;
-  tags: string[];
+  body: string;
+}
+
+export interface ProcessStep {
+  index: string;
+  title: string;
+  label: string;
+  description: string;
 }
 
 export interface NavItem {
