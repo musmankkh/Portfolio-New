@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { nav } from "../../data/content";
+import { nav } from "../../data/portfolio";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);

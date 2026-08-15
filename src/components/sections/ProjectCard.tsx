@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import type { Project } from "../../data/types";
 import { TransitionLink } from "../motion/TransitionLink";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
   const imageStyle: CSSProperties = {
     viewTransitionName: `project-cover-${project.slug}`,
   };
@@ -14,6 +14,7 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <div className="grid gap-6 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] sm:items-start">
         <div className="text-muted font-outlier flex items-center gap-4 text-xs">
+          <span className="text-accent">{String(index + 1).padStart(2, "0")}</span>
           {project.year && <span>{project.year}</span>}
           {project.tags.slice(0, 3).map((tag) => (
             <span key={tag}>{tag}</span>

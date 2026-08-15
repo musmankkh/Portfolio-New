@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { nav, profile } from "../../data/content";
+import { nav, profile } from "../../data/portfolio";
 import { MobileMenu } from "./MobileMenu";
 
 export function Header() {
