@@ -40,7 +40,7 @@ export function Project() {
             {project.tags.map((tag) => (
               <li
                 key={tag}
-                className="border-rule text-muted font-outlier rounded-full border px-3 py-1 text-xs"
+                className="border-rule text-muted font-outlier hover:border-accent/60 hover:text-accent rounded-full border px-3 py-1 text-xs transition-colors duration-(--dur-short)"
               >
                 {tag}
               </li>

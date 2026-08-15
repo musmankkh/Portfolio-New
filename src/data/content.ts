@@ -1,6 +1,7 @@
 import type {
   ContactLink,
   ExperienceItem,
+  FocusArea,
   NavItem,
   Profile,
   Project,
@@ -110,7 +111,37 @@ export const skills: SkillGroup[] = [
   },
 ];
 
+// A higher-level framing of the same real skills listed above — what problems
+// they add up to solving, not just the tool names.
+export const focusAreas: FocusArea[] = [
+  {
+    title: "Data Engineering",
+    description:
+      "Building ETL/ELT pipelines and workflows that move data reliably from source to destination.",
+    tags: ["ETL / ELT", "Apache Airflow", "n8n"],
+  },
+  {
+    title: "Cloud & Infrastructure",
+    description:
+      "Running data infrastructure on AWS and containerized environments, built to scale.",
+    tags: ["AWS Lambda", "Amazon EC2", "Docker"],
+  },
+  {
+    title: "Analytics & BI",
+    description:
+      "Turning structured data into dashboards and reports that support real decisions.",
+    tags: ["Power BI", "Tableau", "SQL"],
+  },
+  {
+    title: "Machine Learning",
+    description:
+      "Applying ML and computer vision models to production data, from training through MLOps.",
+    tags: ["Machine Learning", "Computer Vision", "MLOps"],
+  },
+];
+
 export const nav: NavItem[] = [
+  { label: "Work", href: "/#work" },
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
   { label: "Contact", href: "/#contact" },

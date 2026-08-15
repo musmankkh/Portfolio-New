@@ -71,7 +71,7 @@ export function Experience() {
                           {item.skills.map((skill) => (
                             <li
                               key={skill}
-                              className="border-rule text-muted font-outlier rounded-full border px-3 py-1 text-xs"
+                              className="border-rule text-muted font-outlier hover:border-accent/60 hover:text-accent rounded-full border px-3 py-1 text-xs transition-colors duration-(--dur-short)"
                             >
                               {skill}
                             </li>

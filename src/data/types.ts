@@ -60,6 +60,12 @@ export interface SkillGroup {
   items: string[];
 }
 
+export interface FocusArea {
+  title: string;
+  description: string;
+  tags: string[];
+}
+
 export interface NavItem {
   label: string;
   href: string;

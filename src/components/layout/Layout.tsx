@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useLenis } from "../../hooks/useLenis";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { ScrollProgress } from "./ScrollProgress";
 
 export function Layout() {
   useLenis();
@@ -15,6 +16,7 @@ export function Layout() {
 
   return (
     <div className="flex min-h-dvh flex-col">
+      <ScrollProgress />
       <Header />
       <main className="flex-1">
         <Outlet />
