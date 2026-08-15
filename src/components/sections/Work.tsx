@@ -35,7 +35,7 @@ export function Work() {
             <div className="flex flex-col gap-10">
               {projects.map((project, index) => (
                 <Reveal key={project.slug} index={index}>
-                  <ProjectCard project={project} />
+                  <ProjectCard project={project} index={index} />
                 </Reveal>
               ))}
             </div>
