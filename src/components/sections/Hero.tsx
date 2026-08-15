@@ -4,6 +4,7 @@ import { profile } from "../../data/content";
 import { Eyebrow } from "../ui/Eyebrow";
 import { EmptyState } from "../ui/EmptyState";
 import { PipelineDiagram } from "../ui/PipelineDiagram";
+import { Magnetic } from "../motion/Magnetic";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 export function Hero() {
@@ -74,25 +75,29 @@ export function Hero() {
         )}
 
         <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-          <motion.a
-            href="#work"
-            whileHover={{ y: -2 }}
-            whileTap={{ y: 0, scale: 0.98 }}
-            transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="border-accent text-accent hover:bg-accent hover:text-paper rounded-full border px-6 py-3 text-sm font-medium transition-colors duration-(--dur-short)"
-          >
-            View my work
-          </motion.a>
-          <motion.a
-            href="#contact"
-            whileHover={{ y: -2 }}
-            whileTap={{ y: 0, scale: 0.98 }}
-            transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="text-ink hover:text-accent border-rule/60 hover:border-accent flex items-center gap-2 border-b pb-1 text-sm font-medium transition-colors duration-(--dur-short)"
-          >
-            Get in touch
-            <span aria-hidden="true">→</span>
-          </motion.a>
+          <Magnetic strength={8}>
+            <motion.a
+              href="#work"
+              whileHover={{ y: -2 }}
+              whileTap={{ y: 0, scale: 0.98 }}
+              transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="border-accent text-accent hover:bg-accent hover:text-paper inline-block rounded-full border px-6 py-3 text-sm font-medium transition-colors duration-(--dur-short)"
+            >
+              View my work
+            </motion.a>
+          </Magnetic>
+          <Magnetic strength={6}>
+            <motion.a
+              href="#contact"
+              whileHover={{ y: -2 }}
+              whileTap={{ y: 0, scale: 0.98 }}
+              transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="text-ink hover:text-accent border-rule/60 hover:border-accent inline-flex items-center gap-2 border-b pb-1 text-sm font-medium transition-colors duration-(--dur-short)"
+            >
+              Get in touch
+              <span aria-hidden="true">→</span>
+            </motion.a>
+          </Magnetic>
         </motion.div>
       </motion.div>
     </section>
