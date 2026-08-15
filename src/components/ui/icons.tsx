@@ -28,6 +28,70 @@ export function GithubIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+/** Focus-area glyphs: geometric line marks that echo the PipelineDiagram's node/rule language. */
+
+export function DataIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+        <ellipse cx="12" cy="6" rx="7" ry="3" />
+        <path d="M5 6v12c0 1.66 3.13 3 7 3s7-1.34 7-3V6" />
+        <path d="M5 12c0 1.66 3.13 3 7 3s7-1.34 7-3" />
+      </g>
+    </svg>
+  );
+}
+
+export function AiIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M6.4 7.2 10 10.4M17.6 8.6 13.9 10.8M15 17.4 13 14.4" />
+        <circle cx="12" cy="12" r="2.6" />
+        <circle cx="5" cy="6" r="1.7" />
+        <circle cx="19" cy="7.5" r="1.7" />
+        <circle cx="15.6" cy="19" r="1.7" />
+      </g>
+    </svg>
+  );
+}
+
+export function AutomationIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 12a8 8 0 0 1-13.6 5.7" />
+        <path d="M4 12a8 8 0 0 1 13.6-5.7" />
+        <path d="M17.4 3v3.6h-3.6" />
+        <path d="M6.6 21v-3.6h3.6" />
+      </g>
+    </svg>
+  );
+}
+
+export function CloudIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.4 16.5H7a4 4 0 0 1-.6-7.95 5.5 5.5 0 0 1 10.7-1.1 3.8 3.8 0 0 1 .3 9.05Z" />
+        <path d="M12 16.5v3.5M8.5 20h7" />
+      </g>
+    </svg>
+  );
+}
+
+export function AppIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="2.5" />
+        <path d="M3 9h18M7.5 6.5h.01M10 6.5h.01" />
+        <path d="M9 13.5 7 15.5l2 2M15 13.5l2 2-2 2" />
+      </g>
+    </svg>
+  );
+}
+
 export function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>

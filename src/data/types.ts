@@ -62,12 +62,17 @@ export interface ExperienceItem {
 export interface SkillGroup {
   category: string;
   items: string[];
+  icon: GlyphKey;
 }
+
+/** Keys into the glyph registry in components/ui/icons.tsx. */
+export type GlyphKey = "data" | "ai" | "automation" | "cloud" | "app";
 
 export interface FocusArea {
   title: string;
   description: string;
   body: string;
+  icon: GlyphKey;
 }
 
 export interface ProcessStep {

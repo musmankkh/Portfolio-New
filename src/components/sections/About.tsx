@@ -1,8 +1,13 @@
-import { about } from "../../data/portfolio";
+import { about, experience, profile } from "../../data/portfolio";
 import { Eyebrow } from "../ui/Eyebrow";
 import { Reveal } from "../motion/Reveal";
+import { StaggerContainer, StaggerItem } from "../motion/Stagger";
+
+const CARD = "border-rule/60 bg-paper-2/50 h-full rounded-(--radius-md) border p-8";
 
 export function About() {
+  const current = experience[0];
+
   return (
     <section id="about" className="border-rule/60 border-t px-6 py-24 sm:px-10 sm:py-32">
       <div className="mx-auto max-w-(--content-max)">
@@ -13,20 +18,24 @@ export function About() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-14 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="flex flex-col gap-5">
-            {about.paragraphs.map((paragraph, index) => (
-              <Reveal key={paragraph.slice(0, 24)} index={index}>
-                <p className="text-ink max-w-(--measure) text-sm sm:text-base">
-                  {paragraph}
-                </p>
-              </Reveal>
-            ))}
-          </div>
+        <StaggerContainer className="mt-12 grid gap-4 sm:grid-cols-6">
+          {/* Narrative — the wide anchor of the bento */}
+          <StaggerItem className="sm:col-span-4">
+            <div className={CARD}>
+              <div className="flex flex-col gap-5">
+                {about.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 24)} className="text-ink max-w-(--measure) text-sm sm:text-base">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </StaggerItem>
 
-          <Reveal index={about.paragraphs.length}>
-            <div className="border-rule/60 border-t pt-8 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-10">
-              <p className="text-muted font-outlier mb-4 text-xs tracking-[0.08em] uppercase">
+          {/* Approach — tall rail down the right */}
+          <StaggerItem className="sm:col-span-2 sm:row-span-2">
+            <div className={CARD}>
+              <p className="text-muted font-outlier mb-6 text-xs tracking-[0.08em] uppercase">
                 My approach
               </p>
               <ol className="flex flex-col gap-3">
@@ -38,18 +47,36 @@ export function About() {
                     <span className="font-display text-ink text-base leading-snug">
                       {step.trim()}
                       {index < arr.length - 1 && (
-                        <span className="text-muted" aria-hidden="true">
-                          {" "}
-                          ↓
-                        </span>
+                        <span className="text-muted" aria-hidden="true"> ↓</span>
                       )}
                     </span>
                   </li>
                 ))}
               </ol>
             </div>
-          </Reveal>
-        </div>
+          </StaggerItem>
+
+          {/* Two small stat tiles closing the grid */}
+          {current && (
+            <StaggerItem className="sm:col-span-2">
+              <div className={CARD}>
+                <p className="text-muted font-outlier text-xs tracking-[0.08em] uppercase">Now</p>
+                <p className="font-display text-ink mt-3 text-lg leading-snug">{current.role}</p>
+                <p className="text-muted mt-1 text-sm">{current.organization}</p>
+              </div>
+            </StaggerItem>
+          )}
+
+          <StaggerItem className="sm:col-span-2">
+            <div className={CARD}>
+              <p className="text-muted font-outlier text-xs tracking-[0.08em] uppercase">Based in</p>
+              <p className="font-display text-ink mt-3 text-lg leading-snug">
+                {profile.location || "—"}
+              </p>
+              <p className="text-muted mt-1 text-sm">{profile.role}</p>
+            </div>
+          </StaggerItem>
+        </StaggerContainer>
       </div>
     </section>
   );

@@ -1,13 +1,31 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, type Variants } from "motion/react";
 import { nav } from "../../data/portfolio";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const reduced = useReducedMotion();
+
+  const list: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: reduced ? 0 : 0.06, delayChildren: reduced ? 0 : 0.08 },
+    },
+  };
+
+  const listItem: Variants = {
+    hidden: { opacity: 0, y: reduced ? 0 : 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduced ? 0.001 : 0.36, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -69,19 +87,25 @@ export function MobileMenu() {
               transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="bg-paper fixed inset-0 z-40 flex flex-col justify-center px-6"
             >
-              <nav className="flex flex-col gap-6">
+              <motion.nav
+                variants={list}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-col gap-6"
+              >
                 {nav.map((item, index) => (
-                  <a
+                  <motion.a
                     key={item.href}
+                    variants={listItem}
                     ref={index === 0 ? firstLinkRef : undefined}
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className="font-display text-ink hover:text-accent text-3xl transition-colors duration-(--dur-micro)"
                   >
                     {item.label}
-                  </a>
+                  </motion.a>
                 ))}
-              </nav>
+              </motion.nav>
             </motion.div>
           )}
         </AnimatePresence>,

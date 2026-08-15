@@ -1,4 +1,5 @@
 import { skills } from "../../data/portfolio";
+import { glyphs } from "../ui/glyphs";
 import { Eyebrow } from "../ui/Eyebrow";
 import { EmptyState } from "../ui/EmptyState";
 import { Reveal } from "../motion/Reveal";
@@ -31,9 +32,9 @@ function MarqueeRow({ items, reverse }: { items: string[]; reverse: boolean }) {
       className="overflow-hidden"
       style={{
         maskImage:
-          "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
         WebkitMaskImage:
-          "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
       }}
     >
       <div
@@ -63,8 +64,10 @@ export function Skills() {
       className="border-rule/60 border-t px-6 py-24 sm:px-10 sm:py-32"
     >
       <div className="mx-auto max-w-(--content-max)">
-        <Eyebrow>Skills</Eyebrow>
-        <h2 className="font-display text-3xl">Tools I reach for.</h2>
+        <Reveal>
+          <Eyebrow>Skills</Eyebrow>
+          <h2 className="font-display text-3xl">Tools I reach for.</h2>
+        </Reveal>
 
         <div className="mt-14">
           {skills.length === 0 ? (
@@ -72,17 +75,27 @@ export function Skills() {
               Add skill groups to the `skills` array in src/data/portfolio.ts.
             </EmptyState>
           ) : (
-            <div className="flex flex-col">
-              {skills.map((group, index) => (
-                <Reveal key={group.category} index={index}>
-                  <div className="border-rule/60 grid gap-4 border-t py-8 sm:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] sm:items-center">
-                    <p className="font-outlier text-muted text-xs tracking-[0.08em] uppercase">
-                      {group.category}
-                    </p>
-                    <MarqueeRow items={group.items} reverse={index % 2 === 1} />
-                  </div>
-                </Reveal>
-              ))}
+            <div className="flex flex-col gap-4">
+              {skills.map((group, index) => {
+                const Icon = glyphs[group.icon];
+
+                return (
+                  <Reveal key={group.category} index={index}>
+                    <div className="border-rule/60 bg-paper-2/40 group hover:border-accent/40 rounded-(--radius-md) border px-6 py-6 transition-colors duration-(--dur-short)">
+                      <div className="mb-4 flex items-center gap-3">
+                        <span className="border-rule/60 bg-paper text-accent flex h-8 w-8 items-center justify-center rounded-(--radius-md) border">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <p className="font-outlier text-muted text-xs tracking-[0.08em] uppercase">
+                          {group.category}
+                        </p>
+                      </div>
+
+                      <MarqueeRow items={group.items} reverse={index % 2 === 1} />
+                    </div>
+                  </Reveal>
+                );
+              })}
             </div>
           )}
         </div>

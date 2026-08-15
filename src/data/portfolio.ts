@@ -48,23 +48,35 @@ export const focusAreas: FocusArea[] = [
     description:
       "Building reliable systems for collecting, transforming, and delivering business data.",
     body: "I work with data pipelines, APIs, databases, ETL/ELT workflows, cloud services, and backend systems to move data from its source to where it can create value.",
+    icon: "data",
   },
   {
     title: "Data-Driven AI",
     description:
       "Connecting business data with AI to create more useful and context-aware applications.",
     body: "I build AI-powered solutions using APIs, retrieval-based approaches, prompt engineering, and business data to support knowledge management, analysis, content workflows, and intelligent decision-making.",
+    icon: "ai",
   },
   {
     title: "Business Automation",
     description: "Turning repetitive operational processes into automated workflows.",
     body: "I automate tasks such as reporting, lead workflows, content generation, data processing, notifications, and system-to-system processes using APIs, workflow automation platforms, and serverless services.",
+    icon: "automation",
   },
   {
     title: "Cloud & System Integration",
     description: "Connecting cloud infrastructure, APIs, and business tools into reliable systems.",
     body: "I work with AWS services, REST and WebSocket APIs, third-party integrations, and serverless architectures to connect applications and data across the systems businesses already use.",
+    icon: "cloud",
   },
+];
+
+// ---- Hero rotating keywords (vertical-swap accent under the micro line) ----
+export const heroKeywords: string[] = [
+  "Data Pipelines",
+  "AI Systems",
+  "Automation",
+  "Cloud Infrastructure",
 ];
 
 // ---- About ----
@@ -86,22 +98,27 @@ export const positioningStatement =
 export const skills: SkillGroup[] = [
   {
     category: "Data Engineering & Backend",
+    icon: "data",
     items: ["Python", "FastAPI", "SQL", "APIs", "ETL / ELT", "Data Pipelines", "Data Processing", "Backend Services"],
   },
   {
     category: "Cloud & Serverless",
+    icon: "cloud",
     items: ["AWS Lambda", "API Gateway", "S3", "Step Functions", "DynamoDB", "EventBridge", "AWS Amplify", "Serverless Architecture"],
   },
   {
     category: "AI & Data-Driven Automation",
+    icon: "ai",
     items: ["OpenAI APIs", "Claude API", "Vector Search / RAG", "Prompt Engineering", "n8n", "Make", "Zapier"],
   },
   {
     category: "Frontend & Applications",
+    icon: "app",
     items: ["React.js", "Next.js", "TypeScript", "JavaScript", "Material UI", "Redux Toolkit", "RTK Query", "TanStack Query", "Zustand"],
   },
   {
     category: "Integrations",
+    icon: "automation",
     items: ["Google Cloud APIs", "Gmail", "Slack", "Jira", "REST APIs", "WebSockets", "AWS S3"],
   },
 ];
