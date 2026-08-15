@@ -1,6 +1,6 @@
-import { lazy, Suspense, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, type Variants } from "motion/react";
-import { profile } from "../../data/portfolio";
+import { heroKeywords, profile } from "../../data/portfolio";
 import { Magnetic } from "../motion/Magnetic";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 
@@ -8,6 +8,40 @@ import { useReducedMotion } from "../../hooks/useReducedMotion";
 const DataNetworkCanvas = lazy(() =>
   import("../3d/DataNetworkCanvas").then((m) => ({ default: m.DataNetworkCanvas })),
 );
+
+/** Vertical word-swap: one keyword at a time rides in as the previous rides out. */
+function RotatingKeyword() {
+  const reduced = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduced || heroKeywords.length < 2) return;
+    const id = setInterval(() => {
+      setIndex((current) => (current + 1) % heroKeywords.length);
+    }, 2400);
+    return () => clearInterval(id);
+  }, [reduced]);
+
+  if (reduced) {
+    return <span className="font-display text-accent text-base">{heroKeywords[0]}</span>;
+  }
+
+  return (
+    <span className="relative block h-6 flex-1 overflow-hidden">
+      {heroKeywords.map((word, i) => (
+        <motion.span
+          key={word}
+          className="font-display text-accent absolute left-0 text-base whitespace-nowrap"
+          initial={false}
+          animate={index === i ? { y: 0, opacity: 1 } : { y: index > i ? -26 : 26, opacity: 0 }}
+          transition={{ type: "spring", stiffness: 90, damping: 16 }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
 
 function splitHeadline(text: string) {
   const commaIndex = text.indexOf(",");
@@ -95,6 +129,18 @@ export function Hero() {
           {profile.subheadline}
         </motion.p>
 
+        {/* Decorative reinforcement — the subheadline above already states this in prose. */}
+        <motion.div
+          variants={item}
+          aria-hidden="true"
+          className="mt-7 flex max-w-sm items-center gap-3"
+        >
+          <span className="font-outlier text-muted shrink-0 text-xs tracking-[0.1em] uppercase">
+            Building
+          </span>
+          <RotatingKeyword />
+        </motion.div>
+
         <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
           <Magnetic strength={8}>
             <motion.a
@@ -102,7 +148,7 @@ export function Hero() {
               whileHover={{ y: -2 }}
               whileTap={{ y: 0, scale: 0.98 }}
               transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="border-accent text-accent hover:bg-accent hover:text-paper inline-block rounded-full border px-6 py-3 text-sm font-medium transition-colors duration-(--dur-short)"
+              className="border-accent text-accent hover:bg-accent hover:text-paper hover:shadow-[0_0_28px_-6px_var(--color-accent)] inline-block rounded-full border px-6 py-3 text-sm font-medium transition-[color,background-color,box-shadow] duration-(--dur-short)"
             >
               View My Work
             </motion.a>
