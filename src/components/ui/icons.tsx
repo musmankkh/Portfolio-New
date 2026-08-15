@@ -1,0 +1,29 @@
+import type { SVGProps } from "react";
+
+/** Minimal brand marks, rendered in the current text color (no brand colors) to stay inside the one-accent system. */
+
+export function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.94v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12M7.12 20.45H3.56V9h3.56z" />
+    </svg>
+  );
+}
+
+export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M12.03 2.5c-5.26 0-9.53 4.27-9.53 9.53 0 1.68.44 3.31 1.28 4.75L2.5 21.5l4.85-1.27a9.5 9.5 0 0 0 4.68 1.23h.01c5.26 0 9.53-4.27 9.53-9.53s-4.27-9.43-9.54-9.43m0 17.44h-.01a7.9 7.9 0 0 1-4.03-1.1l-.29-.17-3 .79.8-2.92-.19-.3a7.86 7.86 0 0 1-1.21-4.21c0-4.35 3.55-7.9 7.92-7.9a7.86 7.86 0 0 1 7.9 7.91c0 4.36-3.55 7.9-7.9 7.9m4.33-5.92c-.24-.12-1.41-.7-1.63-.77-.22-.08-.38-.12-.54.12s-.62.77-.76.93-.28.18-.51.06a6.44 6.44 0 0 1-1.9-1.17 7.1 7.1 0 0 1-1.31-1.63c-.14-.24-.02-.36.1-.48.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42s-.54-1.3-.74-1.78c-.19-.46-.39-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.41-.58 1.61-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28" />
+    </svg>
+  );
+}

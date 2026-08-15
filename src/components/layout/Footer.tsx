@@ -1,4 +1,12 @@
 import { contactLinks, profile } from "../../data/content";
+import type { ContactIcon } from "../../data/types";
+import { InstagramIcon, LinkedInIcon, WhatsAppIcon } from "../ui/icons";
+
+const iconComponents: Record<ContactIcon, typeof LinkedInIcon> = {
+  linkedin: LinkedInIcon,
+  instagram: InstagramIcon,
+  whatsapp: WhatsAppIcon,
+};
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,25 +24,31 @@ export function Footer() {
             </h2>
           </div>
 
-          <ul className="flex flex-wrap gap-x-8 gap-y-3">
+          <ul className="flex flex-wrap items-center gap-4">
             {contactLinks.length === 0 && (
               <li className="text-muted font-outlier text-xs">
                 {/* TODO: add contact links (email, GitHub, LinkedIn, etc.) to data/content.ts */}
                 Contact links pending
               </li>
             )}
-            {contactLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-ink hover:text-accent border-rule/60 hover:border-accent border-b pb-0.5 text-sm transition-colors duration-(--dur-micro)"
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {contactLinks.map((link) => {
+              const Icon = link.icon ? iconComponents[link.icon] : null;
+
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    aria-label={link.label}
+                    title={link.label}
+                    className="border-rule/60 text-ink hover:text-accent hover:border-accent flex h-11 w-11 items-center justify-center rounded-full border transition-colors duration-(--dur-short)"
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
+                    {Icon ? <Icon className="h-[18px] w-[18px]" /> : link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
 

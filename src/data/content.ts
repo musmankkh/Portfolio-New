@@ -23,7 +23,18 @@ export const profile: Profile = {
   resumeUrl: "",
 };
 
-export const contactLinks: ContactLink[] = [];
+/**
+ * Sourced from environment variables (see .env.example) rather than
+ * hardcoded here, so contact links can change per-deploy without a code
+ * edit. Entries with no configured URL are simply omitted.
+ */
+const rawContactLinks: ContactLink[] = [
+  { label: "LinkedIn", href: import.meta.env.VITE_LINKEDIN_URL ?? "", icon: "linkedin" },
+  { label: "Instagram", href: import.meta.env.VITE_INSTAGRAM_URL ?? "", icon: "instagram" },
+  { label: "WhatsApp", href: import.meta.env.VITE_WHATSAPP_URL ?? "", icon: "whatsapp" },
+];
+
+export const contactLinks: ContactLink[] = rawContactLinks.filter((link) => link.href);
 
 export const projects: Project[] = [];
 

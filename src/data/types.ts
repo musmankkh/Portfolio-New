@@ -8,9 +8,12 @@ export interface Profile {
   avatarUrl?: string;
 }
 
+export type ContactIcon = "linkedin" | "instagram" | "whatsapp";
+
 export interface ContactLink {
   label: string;
   href: string;
+  icon?: ContactIcon;
 }
 
 export interface ProjectMetric {
