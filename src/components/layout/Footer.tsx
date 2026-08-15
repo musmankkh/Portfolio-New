@@ -22,8 +22,14 @@ export function Footer() {
         {/* Single row: identity · nav · socials */}
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
           <div className="shrink-0">
-            <p className="font-display text-ink text-lg">{profile.name || "—"}</p>
-            <p className="text-muted font-outlier mt-1 text-xs tracking-[0.08em] uppercase">
+            <img
+              src="/logo-wordmark.png"
+              alt={profile.name}
+              width={1000}
+              height={158}
+              className="h-8 w-auto"
+            />
+            <p className="text-muted font-outlier mt-2 text-xs tracking-[0.08em] uppercase">
               {profile.role}
             </p>
           </div>

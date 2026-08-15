@@ -2,6 +2,8 @@ import { skills } from "../../data/portfolio";
 import { glyphs } from "../ui/glyphs";
 import { Eyebrow } from "../ui/Eyebrow";
 import { EmptyState } from "../ui/EmptyState";
+import { GlowCard } from "../ui/GlowCard";
+import { TechIcon } from "../ui/TechIcon";
 import { Reveal } from "../motion/Reveal";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { cn } from "../../lib/cn";
@@ -15,8 +17,9 @@ function MarqueeRow({ items, reverse }: { items: string[]; reverse: boolean }) {
         {items.map((item) => (
           <li
             key={item}
-            className="border-rule text-ink rounded-full border px-3.5 py-1.5 text-sm"
+            className="border-rule text-ink flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm"
           >
+            <TechIcon name={item} />
             {item}
           </li>
         ))}
@@ -47,8 +50,9 @@ function MarqueeRow({ items, reverse }: { items: string[]; reverse: boolean }) {
         {loopItems.map((item, i) => (
           <span
             key={`${item}-${i}`}
-            className="border-rule text-ink hover:border-accent/60 hover:text-accent shrink-0 rounded-full border px-3.5 py-1.5 text-sm transition-colors duration-(--dur-short)"
+            className="border-rule text-ink hover:border-accent/60 hover:text-accent flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm transition-colors duration-(--dur-short)"
           >
+            <TechIcon name={item} />
             {item}
           </span>
         ))}
@@ -81,18 +85,23 @@ export function Skills() {
 
                 return (
                   <Reveal key={group.category} index={index}>
-                    <div className="border-rule/60 bg-paper-2/40 group hover:border-accent/40 rounded-(--radius-md) border px-6 py-6 transition-colors duration-(--dur-short)">
-                      <div className="mb-4 flex items-center gap-3">
-                        <span className="border-rule/60 bg-paper text-accent flex h-8 w-8 items-center justify-center rounded-(--radius-md) border">
-                          <Icon className="h-4 w-4" />
-                        </span>
-                        <p className="font-outlier text-muted text-xs tracking-[0.08em] uppercase">
-                          {group.category}
-                        </p>
-                      </div>
+                    <GlowCard lift={false} spotlight={false}>
+                      <div className="px-6 py-6">
+                        <div className="mb-4 flex items-center gap-3">
+                          <span className="border-rule/60 bg-paper text-accent group-hover:border-accent/50 group-hover:shadow-(--glow-accent) flex h-9 w-9 items-center justify-center rounded-(--radius-md) border transition-all duration-(--dur-long)">
+                            <Icon className="h-5 w-5" />
+                          </span>
+                          <p className="font-outlier text-muted group-hover:text-ink text-xs tracking-[0.08em] uppercase transition-colors duration-(--dur-short)">
+                            {group.category}
+                          </p>
+                          <span className="text-muted/50 font-outlier ml-auto text-[11px]">
+                            {String(group.items.length).padStart(2, "0")}
+                          </span>
+                        </div>
 
-                      <MarqueeRow items={group.items} reverse={index % 2 === 1} />
-                    </div>
+                        <MarqueeRow items={group.items} reverse={index % 2 === 1} />
+                      </div>
+                    </GlowCard>
                   </Reveal>
                 );
               })}

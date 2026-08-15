@@ -99,11 +99,11 @@ export function Hero() {
         {profile.microLine && (
           <motion.div
             variants={item}
-            className="border-rule/60 bg-paper/60 text-muted mb-8 inline-flex items-center gap-2.5 rounded-full border px-4 py-1.5 text-xs backdrop-blur-sm"
+            className="border-rule/60 bg-paper/60 text-muted mb-8 inline-flex items-center gap-3 rounded-full border px-5 py-2.5 text-sm backdrop-blur-sm"
           >
-            <span className="relative flex h-1.5 w-1.5">
+            <span className="relative flex h-2 w-2">
               <span className="bg-accent absolute inline-flex h-full w-full animate-ping rounded-full opacity-60" />
-              <span className="bg-accent relative inline-flex h-1.5 w-1.5 rounded-full" />
+              <span className="bg-accent relative inline-flex h-2 w-2 rounded-full" />
             </span>
             {profile.microLine}
           </motion.div>

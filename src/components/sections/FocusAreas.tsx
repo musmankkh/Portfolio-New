@@ -1,9 +1,8 @@
-import { motion } from "motion/react";
 import { focusAreas, whatIDo } from "../../data/portfolio";
 import { glyphs } from "../ui/glyphs";
 import { Eyebrow } from "../ui/Eyebrow";
+import { GlowCard } from "../ui/GlowCard";
 import { Reveal } from "../motion/Reveal";
-import { Spotlight } from "../motion/Spotlight";
 import { Tilt } from "../motion/Tilt";
 import { StaggerContainer, StaggerItem } from "../motion/Stagger";
 
@@ -28,33 +27,28 @@ export function FocusAreas() {
 
             return (
               <StaggerItem key={area.title} className="h-full">
-                <Tilt strength={5} className="h-full">
-                  <motion.div
-                    whileHover={{ y: -6 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="h-full"
-                  >
-                    <Spotlight className="h-full">
-                      <div className="border-rule/60 group hover:border-accent/60 relative z-10 flex h-full flex-col rounded-(--radius-md) border p-8 transition-colors duration-(--dur-short)">
-                        <div className="flex items-start justify-between">
-                          <span className="border-rule/60 bg-paper-2 text-accent group-hover:border-accent/40 flex h-11 w-11 items-center justify-center rounded-(--radius-md) border transition-colors duration-(--dur-short)">
-                            <Icon className="h-5 w-5" />
-                          </span>
-                          <span className="font-outlier text-muted group-hover:text-accent text-xs transition-colors duration-(--dur-short)">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-                        </div>
+                <Tilt strength={4} className="h-full">
+                  <GlowCard ghost={String(index + 1).padStart(2, "0")}>
+                    <div className="flex h-full flex-col p-8 sm:p-9">
+                      <span className="border-rule/60 bg-paper text-accent group-hover:border-accent/50 group-hover:shadow-(--glow-accent) flex h-12 w-12 items-center justify-center rounded-(--radius-md) border transition-all duration-(--dur-long)">
+                        <Icon className="h-6 w-6" />
+                      </span>
 
-                        <h3 className="font-display group-hover:text-accent mt-6 text-xl transition-colors duration-(--dur-short)">
-                          {area.title}
-                        </h3>
-                        <p className="text-ink mt-3 max-w-(--measure) text-sm font-medium">
-                          {area.description}
-                        </p>
-                        <p className="text-muted mt-2 max-w-(--measure) text-sm">{area.body}</p>
+                      <h3 className="font-display group-hover:text-accent mt-6 text-xl transition-colors duration-(--dur-short)">
+                        {area.title}
+                      </h3>
+                      <p className="text-ink mt-3 max-w-(--measure) text-sm font-medium">
+                        {area.description}
+                      </p>
+
+                      {/* Detail folds away on pointer devices; always open on touch. */}
+                      <div className="fold">
+                        <div>
+                          <p className="text-muted mt-3 max-w-(--measure) text-sm">{area.body}</p>
+                        </div>
                       </div>
-                    </Spotlight>
-                  </motion.div>
+                    </div>
+                  </GlowCard>
                 </Tilt>
               </StaggerItem>
             );

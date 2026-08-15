@@ -1,6 +1,6 @@
 /*
   Design tokens — the single source of truth for the visual system.
-  Palette: warm-midnight anchor (hue 40) with a jade signal accent.
+  Palette: warm-midnight anchor (hue 40) with an azure signal accent.
   Swap the anchor hue / accent / fonts here once real brand direction is
   confirmed — every component reads from these tokens, nothing is
   hardcoded downstream. Keys under `--color-*`, `--font-*` and
@@ -19,9 +19,9 @@
   --color-muted: oklch(72% 0.006 40);
   --color-ink: oklch(94% 0.006 80);
 
-  --color-accent: oklch(72% 0.13 155);
-  --color-accent-strong: oklch(80% 0.15 155);
-  --color-focus: oklch(75% 0.16 155);
+  --color-accent: oklch(70% 0.16 238);
+  --color-accent-strong: oklch(78% 0.15 238);
+  --color-focus: oklch(74% 0.18 238);
 
   /* ---- Typography ---- */
   --font-display: "Fraunces", ui-serif, Georgia, serif;
@@ -68,6 +68,13 @@
   --measure: 65ch;
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+
+  /* ---- Elevation: accent-tinted glow used on hover states ---- */
+  --glow-accent: 0 0 0 1px color-mix(in oklch, var(--color-accent) 22%, transparent),
+    0 18px 50px -22px color-mix(in oklch, var(--color-accent) 55%, transparent);
+  --shadow-card: 0 20px 45px -30px rgb(0 0 0 / 0.9);
 }
 
 @media (prefers-reduced-motion: reduce) {
