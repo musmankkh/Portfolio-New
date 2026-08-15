@@ -46,10 +46,13 @@ export interface Project {
 export interface ExperienceItem {
   organization: string;
   role: string;
+  employmentType?: string;
   start: string;
   end?: string;
+  location?: string;
   summary?: string;
   highlights?: string[];
+  skills?: string[];
 }
 
 export interface SkillGroup {

@@ -24,8 +24,15 @@ export function Experience() {
               {experience.map((item, index) => (
                 <Reveal key={`${item.organization}-${item.start}`} index={index}>
                   <li className="border-rule/60 grid gap-2 border-t py-8 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-                    <div className="font-outlier text-muted text-xs tracking-[0.08em] uppercase">
-                      {item.start} — {item.end || "Present"}
+                    <div className="font-outlier text-muted flex flex-col gap-1 text-xs tracking-[0.08em] uppercase">
+                      <span>
+                        {item.start} — {item.end || "Present"}
+                      </span>
+                      {item.location && (
+                        <span className="normal-case tracking-normal">
+                          {item.location}
+                        </span>
+                      )}
                     </div>
                     <div>
                       <h3 className="font-display text-lg">
@@ -34,8 +41,13 @@ export function Experience() {
                           · {item.organization}
                         </span>
                       </h3>
+                      {item.employmentType && (
+                        <p className="text-muted font-outlier mt-1 text-xs tracking-[0.06em] uppercase">
+                          {item.employmentType}
+                        </p>
+                      )}
                       {item.summary && (
-                        <p className="text-muted mt-2 max-w-(--measure) text-sm">
+                        <p className="text-muted mt-3 max-w-(--measure) text-sm">
                           {item.summary}
                         </p>
                       )}
@@ -50,6 +62,18 @@ export function Experience() {
                                 —
                               </span>
                               {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {item.skills && item.skills.length > 0 && (
+                        <ul className="mt-4 flex flex-wrap gap-2">
+                          {item.skills.map((skill) => (
+                            <li
+                              key={skill}
+                              className="border-rule text-muted font-outlier rounded-full border px-3 py-1 text-xs"
+                            >
+                              {skill}
                             </li>
                           ))}
                         </ul>
