@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "./styles/tokens.css";
 
+/* Skill/reference docs are prose about Tailwind, not markup — scanning them
+   emits utilities nothing renders. */
+@source not "../.claude";
+
 * {
   box-sizing: border-box;
 }
@@ -99,57 +103,65 @@
   mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 78%);
 }
 
-html {
-  color-scheme: dark;
-  scroll-behavior: auto; /* Lenis owns smooth scrolling */
-}
+/* ---- Element resets ----
+   These MUST live in @layer base. Tailwind v4 emits its utilities inside
+   @layer utilities, and unlayered CSS outranks *any* layered CSS regardless of
+   specificity — so an unlayered `img { display: block }` silently beats
+   `hidden` / `sm:hidden` on every image in the app. Layered, the normal
+   cascade order (base < components < utilities) applies again. */
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: auto; /* Lenis owns smooth scrolling */
+  }
 
-body {
-  margin: 0;
-  background: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-body);
-  font-weight: 400;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
 
-p {
-  margin: 0;
-  max-width: var(--measure);
-}
+  p {
+    margin: 0;
+    max-width: var(--measure);
+  }
 
-a {
-  color: inherit;
-}
+  a {
+    color: inherit;
+  }
 
-img,
-svg {
-  display: block;
-  max-width: 100%;
-}
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
 
-::selection {
-  background: var(--color-accent);
-  color: var(--color-paper);
-}
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-paper);
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
 }
 
 /* ---- View Transitions ----

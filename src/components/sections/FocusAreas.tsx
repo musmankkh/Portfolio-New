@@ -21,7 +21,7 @@ export function FocusAreas() {
           <p className="text-muted mt-4 max-w-(--measure) text-sm">{whatIDo.supporting}</p>
         </Reveal>
 
-        <StaggerContainer className="mt-14 grid gap-4 sm:grid-cols-2">
+        <StaggerContainer className="mt-14 grid gap-4 md:grid-cols-2">
           {focusAreas.map((area, index) => {
             const Icon = glyphs[area.icon];
 

@@ -23,7 +23,8 @@ export const profile: Profile = {
     "I build data pipelines, AI-powered applications, and automation systems that turn business data and repetitive processes into reliable, scalable workflows.",
   microLine: "Currently building AI and data-driven solutions at Kavtech Solutions.",
   location: "Lahore, Punjab, Pakistan",
-  resumeUrl: "",
+  // Served from public/ — swap in an external link if the CV moves off-site.
+  resumeUrl: "/MuhammadUsmanAsghar_CV.pdf",
 };
 
 const rawContactLinks: ContactLink[] = [

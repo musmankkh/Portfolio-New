@@ -10,10 +10,10 @@ function WorkInProgress() {
     <Reveal>
       <GlowCard lift={false} spotlight={false}>
         <div className="flex flex-col items-center gap-8 py-16 text-center">
-          <PipelineDiagram className="max-w-xl px-6" />
+          <PipelineDiagram className="max-w-[36rem] px-6" />
           <div className="px-6">
             <p className="font-display text-xl">Case studies in progress.</p>
-            <p className="text-muted mx-auto mt-2 max-w-md text-sm">
+            <p className="text-muted mx-auto mt-2 max-w-[28rem] text-sm">
               The pipelines above are running — the write-ups aren't published yet.
             </p>
             <a
