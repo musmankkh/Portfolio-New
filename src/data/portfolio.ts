@@ -39,7 +39,7 @@ export const contactLinks: ContactLink[] = rawContactLinks.filter((link) => link
 export const whatIDo = {
   heading: "Turning Business Data Into Intelligent Systems",
   supporting:
-    "I work at the intersection of data engineering, AI, cloud infrastructure, and automation — building systems that move data reliably, reduce manual work, and help businesses make better use of their information.",
+    "Systems that move data reliably, cut manual work, and help businesses use what they already know.",
 };
 
 export const focusAreas: FocusArea[] = [
@@ -47,34 +47,48 @@ export const focusAreas: FocusArea[] = [
     title: "Data Engineering",
     description:
       "Building reliable systems for collecting, transforming, and delivering business data.",
-    body: "I work with data pipelines, APIs, databases, ETL/ELT workflows, cloud services, and backend systems to move data from its source to where it can create value.",
+    body: "Pipelines, APIs, databases, ETL/ELT workflows, and backend systems that carry data from source to value.",
+    icon: "data",
   },
   {
     title: "Data-Driven AI",
     description:
       "Connecting business data with AI to create more useful and context-aware applications.",
-    body: "I build AI-powered solutions using APIs, retrieval-based approaches, prompt engineering, and business data to support knowledge management, analysis, content workflows, and intelligent decision-making.",
+    body: "Built on APIs, retrieval, prompt engineering, and real business data — for knowledge management, analysis, and decision-making.",
+    icon: "ai",
   },
   {
     title: "Business Automation",
     description: "Turning repetitive operational processes into automated workflows.",
-    body: "I automate tasks such as reporting, lead workflows, content generation, data processing, notifications, and system-to-system processes using APIs, workflow automation platforms, and serverless services.",
+    body: "Reporting, lead workflows, content generation, notifications, and system-to-system handoffs — automated with APIs and serverless.",
+    icon: "automation",
   },
   {
     title: "Cloud & System Integration",
     description: "Connecting cloud infrastructure, APIs, and business tools into reliable systems.",
-    body: "I work with AWS services, REST and WebSocket APIs, third-party integrations, and serverless architectures to connect applications and data across the systems businesses already use.",
+    body: "AWS services, REST and WebSocket APIs, and serverless architectures wiring together the tools a business already runs on.",
+    icon: "cloud",
   },
+];
+
+// ---- Hero rotating keywords (vertical-swap accent under the micro line) ----
+export const heroKeywords: string[] = [
+  "Data Pipelines",
+  "AI Systems",
+  "Automation",
+  "Cloud Infrastructure",
 ];
 
 // ---- About ----
 export const about = {
   heading: "I Build Systems Where Data, AI & Automation Meet.",
+  /** Always visible — the one-sentence version. */
+  lead: "I'm a Data Engineer building data-driven applications, AI systems, cloud infrastructure, and automation workflows that solve real business problems.",
+  /** Revealed behind a toggle so the section reads short by default. */
   paragraphs: [
-    "I'm a Data Engineer focused on building data-driven applications, AI systems, cloud infrastructure, and automation workflows that solve real business problems.",
-    "I care less about using technology simply because it's new and more about whether the system actually makes a process faster, more reliable, easier to understand, or easier to scale.",
-    "The problems I find most interesting sit between business requirements and technical possibilities — taking messy data, repetitive processes, disconnected systems, or unclear requirements and turning them into software and workflows that people can actually use.",
-    "At Kavtech Solutions, I work across data, cloud, AI, backend systems, frontend applications, and integrations. My work involves connecting different pieces of a system — from data sources and APIs to cloud services, automation workflows, and AI capabilities — and turning them into production-ready solutions.",
+    "I care less about using technology because it's new — and more about whether it makes a process faster, more reliable, or easier to scale.",
+    "The problems I find most interesting sit between business requirements and technical possibility: turning messy data and disconnected systems into workflows people actually use.",
+    "At Kavtech Solutions I work across data, cloud, AI, backend, and frontend — connecting data sources, APIs, and automation into production-ready systems.",
   ],
   approach: "Understand the data → Build the pipeline → Automate the process → Apply intelligence → Deliver measurable value.",
 };
@@ -86,22 +100,27 @@ export const positioningStatement =
 export const skills: SkillGroup[] = [
   {
     category: "Data Engineering & Backend",
+    icon: "data",
     items: ["Python", "FastAPI", "SQL", "APIs", "ETL / ELT", "Data Pipelines", "Data Processing", "Backend Services"],
   },
   {
     category: "Cloud & Serverless",
+    icon: "cloud",
     items: ["AWS Lambda", "API Gateway", "S3", "Step Functions", "DynamoDB", "EventBridge", "AWS Amplify", "Serverless Architecture"],
   },
   {
     category: "AI & Data-Driven Automation",
+    icon: "ai",
     items: ["OpenAI APIs", "Claude API", "Vector Search / RAG", "Prompt Engineering", "n8n", "Make", "Zapier"],
   },
   {
     category: "Frontend & Applications",
+    icon: "app",
     items: ["React.js", "Next.js", "TypeScript", "JavaScript", "Material UI", "Redux Toolkit", "RTK Query", "TanStack Query", "Zustand"],
   },
   {
     category: "Integrations",
+    icon: "automation",
     items: ["Google Cloud APIs", "Gmail", "Slack", "Jira", "REST APIs", "WebSockets", "AWS S3"],
   },
 ];
@@ -159,7 +178,7 @@ export const dataPipelineShowcase = {
 // ---- Projects ----
 export const workSection = {
   heading: "Selected Work",
-  supporting: "A selection of systems, data workflows, AI applications, and automation solutions I've worked on.",
+  supporting: "Systems, data workflows, AI applications, and automation I've shipped.",
 };
 
 export const projects: Project[] = [];
@@ -167,7 +186,7 @@ export const projects: Project[] = [];
 // ---- Experience ----
 export const experienceSection = {
   heading: "Experience",
-  supporting: "Building practical systems across data engineering, AI, cloud infrastructure, automation, and modern web applications.",
+  supporting: "Practical systems across data, AI, cloud, and automation.",
 };
 
 export const experience: ExperienceItem[] = [
@@ -224,9 +243,16 @@ export const experience: ExperienceItem[] = [
 // ---- Contact ----
 export const contactSection = {
   heading: "Let's Build Something With Data.",
-  text: "Whether you have a data pipeline to build, a repetitive process to automate, an AI application to develop, a cloud system to design, or a business workflow that needs untangling — I'd like to hear about it.",
-  interests:
-    "I'm interested in working on data engineering, AI applications, business automation, cloud systems, integrations, and data-driven products.",
+  text: "A pipeline to build, a process to automate, an AI application to ship, or a workflow that needs untangling — I'd like to hear about it.",
+  /** Replaces the old prose "interests" sentence with scannable chips. */
+  interestTags: [
+    "Data Engineering",
+    "AI Applications",
+    "Business Automation",
+    "Cloud Systems",
+    "Integrations",
+    "Data-Driven Products",
+  ],
   primaryCta: "Start a Conversation",
 };
 

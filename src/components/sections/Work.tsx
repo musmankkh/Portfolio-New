@@ -1,5 +1,6 @@
 import { projects, workSection } from "../../data/portfolio";
 import { Eyebrow } from "../ui/Eyebrow";
+import { GlowCard } from "../ui/GlowCard";
 import { Reveal } from "../motion/Reveal";
 import { PipelineDiagram } from "../ui/PipelineDiagram";
 import { ProjectCard } from "./ProjectCard";
@@ -7,16 +8,23 @@ import { ProjectCard } from "./ProjectCard";
 function WorkInProgress() {
   return (
     <Reveal>
-      <div className="border-rule/60 flex flex-col items-center gap-8 border py-16 text-center">
-        <PipelineDiagram className="max-w-xl px-6" />
-        <div>
-          <p className="font-display text-xl">Case studies in progress.</p>
-          <p className="text-muted mt-2 max-w-(--measure) text-sm">
-            The pipelines above are running — the write-ups aren't published
-            yet. Check back soon, or reach out directly in the meantime.
-          </p>
+      <GlowCard lift={false} spotlight={false}>
+        <div className="flex flex-col items-center gap-8 py-16 text-center">
+          <PipelineDiagram className="max-w-xl px-6" />
+          <div className="px-6">
+            <p className="font-display text-xl">Case studies in progress.</p>
+            <p className="text-muted mx-auto mt-2 max-w-md text-sm">
+              The pipelines above are running — the write-ups aren't published yet.
+            </p>
+            <a
+              href="#contact"
+              className="border-accent text-accent hover:bg-accent hover:text-paper mt-6 inline-block rounded-full border px-5 py-2.5 text-sm font-medium transition-colors duration-(--dur-short)"
+            >
+              Ask me about the work
+            </a>
+          </div>
         </div>
-      </div>
+      </GlowCard>
     </Reveal>
   );
 }
