@@ -7,15 +7,6 @@ import { cn } from "../../lib/cn";
 import { MobileMenu } from "./MobileMenu";
 
 export function Header() {
-  const initials = profile.name
-    ? profile.name
-        .split(" ")
-        .map((part) => part[0])
-        .join("")
-        .slice(0, 2)
-        .toUpperCase()
-    : "—";
-
   const [scrolled, setScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState("");
 
@@ -65,9 +56,16 @@ export function Header() {
         <Link
           to="/"
           onClick={() => setActiveHref("")}
-          className="font-outlier text-ink hover:text-accent shrink-0 text-sm font-medium tracking-[0.08em] transition-colors duration-(--dur-micro)"
+          aria-label={profile.name || "Home"}
+          className="shrink-0 opacity-90 transition-opacity duration-(--dur-short) hover:opacity-100"
         >
-          {initials}
+          <img
+            src="/logo-wordmark.png"
+            alt={profile.name}
+            width={1000}
+            height={158}
+            className="h-6 w-auto sm:h-7"
+          />
         </Link>
 
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 sm:flex">
