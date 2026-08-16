@@ -25,7 +25,7 @@ export function PositioningStatement() {
         <motion.div
           aria-hidden="true"
           style={{ y: glowY }}
-          className="pointer-events-none absolute inset-x-0 top-1/2 mx-auto h-[26rem] max-w-3xl -translate-y-1/2 rounded-full opacity-[0.13] blur-[110px]"
+          className="pointer-events-none absolute inset-x-0 top-1/2 mx-auto h-[26rem] max-w-[48rem] -translate-y-1/2 rounded-full opacity-[0.13] blur-[110px]"
         >
           <div className="from-accent to-accent-strong h-full w-full bg-gradient-to-br" />
         </motion.div>

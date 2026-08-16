@@ -36,7 +36,7 @@ export function Experience() {
                     <li className="relative">
                       <span
                         aria-hidden="true"
-                        className="bg-paper border-accent/50 absolute top-8 -left-[3.1rem] hidden h-3 w-3 rounded-full border-2 sm:block"
+                        className="bg-paper border-accent/50 absolute top-8 -left-[2.9rem] hidden h-3 w-3 rounded-full border-2 sm:block"
                       >
                         {isCurrent && (
                           <span className="bg-accent absolute inset-0 animate-ping rounded-full opacity-50" />

@@ -59,16 +59,27 @@ export function Header() {
           aria-label={profile.name || "Home"}
           className="shrink-0 opacity-90 transition-opacity duration-(--dur-short) hover:opacity-100"
         >
+          {/* Square mark on phones — the wordmark's text renders ~9px tall at
+              this height and eats ~44% of a 375px header. */}
+          <img
+            src="/logo-mark.png"
+            alt=""
+            width={512}
+            height={512}
+            className="h-7 w-7 sm:hidden"
+          />
           <img
             src="/logo-wordmark.png"
-            alt={profile.name}
+            alt=""
             width={1000}
             height={158}
-            className="h-6 w-auto sm:h-7"
+            className="hidden h-7 w-auto sm:block"
           />
         </Link>
 
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 sm:flex">
+        {/* lg, not sm: the centred nav is ~510px wide, so below 1024px it
+            overlaps the wordmark on the left and the CTA on the right. */}
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">
           {nav.map((item) => {
             const isActive = activeHref === item.href;
 
@@ -96,7 +107,7 @@ export function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <Magnetic strength={6} className="hidden sm:block">
+          <Magnetic strength={6} className="hidden lg:block">
             <motion.a
               href="/#contact"
               whileHover={{ y: -1 }}

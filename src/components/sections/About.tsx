@@ -24,9 +24,9 @@ export function About() {
           </h2>
         </Reveal>
 
-        <StaggerContainer className="mt-12 grid gap-4 sm:grid-cols-6">
+        <StaggerContainer className="mt-12 grid gap-4 lg:grid-cols-6">
           {/* Lead + progressive disclosure */}
-          <StaggerItem className="sm:col-span-4">
+          <StaggerItem className="lg:col-span-4">
             <GlowCard ghost="01" spotlight={false}>
               <div className="p-8 sm:p-10">
                 <p className="text-ink max-w-(--measure) text-lg leading-relaxed text-balance sm:text-xl">
@@ -78,7 +78,7 @@ export function About() {
           </StaggerItem>
 
           {/* Approach rail */}
-          <StaggerItem className="sm:col-span-2 sm:row-span-2">
+          <StaggerItem className="lg:col-span-2 lg:row-span-2">
             <GlowCard>
               <div className="p-8">
                 <p className="text-muted font-outlier mb-6 text-xs tracking-[0.08em] uppercase">
@@ -108,7 +108,7 @@ export function About() {
 
           {/* Now / Based-in tiles */}
           {current && (
-            <StaggerItem className="sm:col-span-2">
+            <StaggerItem className="lg:col-span-2">
               <GlowCard>
                 <div className="p-8">
                   <p className="text-muted font-outlier flex items-center gap-2 text-xs tracking-[0.08em] uppercase">

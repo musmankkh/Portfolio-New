@@ -20,7 +20,7 @@ export function Footer() {
     <footer className="border-rule/60 border-t">
       <div className="mx-auto max-w-(--content-max) px-6 py-10 sm:px-10">
         {/* Single row: identity · nav · socials */}
-        <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:flex-wrap md:items-center">
           <div className="shrink-0">
             <img
               src="/logo-wordmark.png"

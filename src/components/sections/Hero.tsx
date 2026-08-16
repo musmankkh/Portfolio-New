@@ -26,12 +26,14 @@ function RotatingKeyword() {
     return <span className="font-display text-accent text-base">{heroKeywords[0]}</span>;
   }
 
+  // h-7, not h-6: the line box is 16px x 1.55 = 24.8px, so a 24px box clips
+  // descenders (the "p" in "Data Pipelines") under overflow-hidden.
   return (
-    <span className="relative block h-6 flex-1 overflow-hidden">
+    <span className="relative block h-7 flex-1 overflow-hidden">
       {heroKeywords.map((word, i) => (
         <motion.span
           key={word}
-          className="font-display text-accent absolute left-0 text-base whitespace-nowrap"
+          className="font-display text-accent absolute top-0 left-0 text-base whitespace-nowrap"
           initial={false}
           animate={index === i ? { y: 0, opacity: 1 } : { y: index > i ? -26 : 26, opacity: 0 }}
           transition={{ type: "spring", stiffness: 90, damping: 16 }}
@@ -81,7 +83,9 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[92dvh] flex-col justify-center overflow-hidden px-6 sm:px-10"
+      // pt clears the fixed header pill (~64px to its lower edge) so the status
+      // badge can never tuck under it on short/landscape viewports.
+      className="relative flex min-h-[92dvh] flex-col justify-center overflow-hidden px-6 pt-24 pb-12 sm:px-10"
     >
       {!reduced && (
         <Suspense fallback={null}>
@@ -133,7 +137,7 @@ export function Hero() {
         <motion.div
           variants={item}
           aria-hidden="true"
-          className="mt-7 flex max-w-sm items-center gap-3"
+          className="mt-7 flex max-w-[22rem] items-center gap-3"
         >
           <span className="font-outlier text-muted shrink-0 text-xs tracking-[0.1em] uppercase">
             Building
@@ -155,14 +159,16 @@ export function Hero() {
           </Magnetic>
           <Magnetic strength={6}>
             <motion.a
-              href="#contact"
+              href={profile.resumeUrl || "#contact"}
+              target={profile.resumeUrl ? "_blank" : undefined}
+              rel={profile.resumeUrl ? "noreferrer" : undefined}
               whileHover={{ y: -2 }}
               whileTap={{ y: 0, scale: 0.98 }}
               transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="text-ink hover:text-accent border-rule/60 hover:border-accent inline-flex items-center gap-2 border-b pb-1 text-sm font-medium transition-colors duration-(--dur-short)"
             >
-              Start a Conversation
-              <span aria-hidden="true">→</span>
+              {profile.resumeUrl ? "View My CV" : "Start a Conversation"}
+              <span aria-hidden="true">{profile.resumeUrl ? "↗" : "→"}</span>
             </motion.a>
           </Magnetic>
         </motion.div>

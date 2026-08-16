@@ -49,7 +49,7 @@ export function MobileMenu() {
   }, [open]);
 
   return (
-    <div className="sm:hidden">
+    <div className="lg:hidden">
       <button
         ref={toggleRef}
         type="button"
